@@ -44,6 +44,6 @@ $conn->query($sqlC);
 
 $conn->close();
 
-header("Location: new_plainte.php");
+header("Location: liste_plainte.php");
 die()
 ?>

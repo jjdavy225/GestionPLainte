@@ -47,7 +47,7 @@
     <header id="header" class="header fixed-top d-flex align-items-center">
 
         <div class="d-flex align-items-center justify-content-between">
-            <a href="index.html" class="logo d-flex align-items-center">
+            <a href="index.php" class="logo d-flex align-items-center">
                 <img src="assets/img/logo.png" alt="">
                 <span class="d-none d-lg-block">Gestion de plaintes</span>
             </a>
@@ -103,7 +103,7 @@
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="index.php">
                     <i class="bi bi-grid"></i>
                     <span>Dashboard</span>
                 </a>
@@ -120,90 +120,69 @@
                         </a>
                     </li>
                     <li>
-                        <a href="Plaintes/liste_plainte.php">
+                        <a href="liste_plainte.php">
                             <i class="bi bi-plus"></i><span>Liste des plaintes</span>
                         </a>
                     </li>
                 </ul>
-            </li><!-- End Components Nav -->
-
+            </li>
+            
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-journal-text"></i><span>Forms</span><i class="bi bi-chevron-down ms-auto"></i>
+                <a class="nav-link collapsed" data-bs-target="#services-nav" data-bs-toggle="collapse" href="index_service.php">
+                    <i class="bi bi-pencil-square"></i><span>Services</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <ul id="services-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="forms-elements.html">
-                            <i class="bi bi-circle"></i><span>Form Elements</span>
+                        <a href="new_service.php">
+                            <i class="bi bi-plus"></i><span>Nouvelle service</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="liste_service.php">
+                            <i class="bi bi-plus"></i><span>Liste des services</span>
                         </a>
                     </li>
                 </ul>
-            </li><!-- End Forms Nav -->
+            </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i class="bi bi-chevron-down ms-auto"></i>
+                <a class="nav-link collapsed" data-bs-target="#plaintes-nav" data-bs-toggle="collapse" href="index_plainte.php">
+                    <i class="bi bi-pencil-square"></i><span>Plaintes</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <ul id="plaintes-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="tables-data.html">
-                            <i class="bi bi-circle"></i><span>Data Tables</span>
+                        <a href="new_plainte.php">
+                            <i class="bi bi-plus"></i><span>Nouvelle plainte</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="liste_plainte.php">
+                            <i class="bi bi-plus"></i><span>Liste des plaintes</span>
                         </a>
                     </li>
                 </ul>
-            </li><!-- End Tables Nav -->
-
-            <li class="nav-heading">Pages</li>
+            </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="users-profile.html">
-                    <i class="bi bi-person"></i>
-                    <span>Profile</span>
+                <a class="nav-link collapsed" data-bs-target="#plaintes-nav" data-bs-toggle="collapse" href="index_plainte.php">
+                    <i class="bi bi-pencil-square"></i><span>Plaintes</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-            </li><!-- End Profile Page Nav -->
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-faq.html">
-                    <i class="bi bi-question-circle"></i>
-                    <span>F.A.Q</span>
-                </a>
-            </li><!-- End F.A.Q Page Nav -->
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-contact.html">
-                    <i class="bi bi-envelope"></i>
-                    <span>Contact</span>
-                </a>
-            </li><!-- End Contact Page Nav -->
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-register.html">
-                    <i class="bi bi-card-list"></i>
-                    <span>Register</span>
-                </a>
-            </li><!-- End Register Page Nav -->
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-login.html">
-                    <i class="bi bi-box-arrow-in-right"></i>
-                    <span>Login</span>
-                </a>
-            </li><!-- End Login Page Nav -->
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-error-404.html">
-                    <i class="bi bi-dash-circle"></i>
-                    <span>Error 404</span>
-                </a>
-            </li><!-- End Error 404 Page Nav -->
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="pages-blank.html">
-                    <i class="bi bi-file-earmark"></i>
-                    <span>Blank</span>
-                </a>
-            </li><!-- End Blank Page Nav -->
-
+                <ul id="plaintes-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="new_plainte.php">
+                            <i class="bi bi-plus"></i><span>Nouvelle plainte</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="liste_plainte.php">
+                            <i class="bi bi-plus"></i><span>Liste des plaintes</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            
+            
+            <!-- End Components Nav -->
         </ul>
 
     </aside><!-- End Sidebar-->
