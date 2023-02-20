@@ -58,7 +58,6 @@ Liste des plaintes
                 </thead>
                 <tbody>
                     <?php foreach ($result as $row) : ?>
-                        <a href=""></a>
                         <tr>
                             <td><?php echo $row['numPlainte'] ?></td>
                             <td><?php echo $row['datePlainte'] ?></td>

@@ -110,7 +110,7 @@
             </li><!-- End Dashboard Nav -->
 
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#plaintes-nav" data-bs-toggle="collapse" href="index_plainte.php">
+                <a class="nav-link collapsed" data-bs-target="#plaintes-nav" data-bs-toggle="collapse">
                     <i class="bi bi-pencil-square"></i><span>Plaintes</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="plaintes-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
@@ -128,7 +128,7 @@
             </li>
             
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#services-nav" data-bs-toggle="collapse" href="index_service.php">
+                <a class="nav-link collapsed" data-bs-target="#services-nav" data-bs-toggle="collapse">
                     <i class="bi bi-house-gear"></i><span>Services</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="services-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
@@ -146,7 +146,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#transmissions-nav" data-bs-toggle="collapse" href="index_transmission.php">
+                <a class="nav-link collapsed" data-bs-target="#transmissions-nav" data-bs-toggle="collapse">
                     <i class="bi bi-share"></i><span>Transmissions</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="transmissions-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
@@ -164,7 +164,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#reponses-nav" data-bs-toggle="collapse" href="index_reponse.php">
+                <a class="nav-link collapsed" data-bs-target="#reponses-nav" data-bs-toggle="collapse" >
                     <i class="bi bi-check2-square"></i><span>Réponses</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="reponses-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
