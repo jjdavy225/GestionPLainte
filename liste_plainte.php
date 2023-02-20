@@ -40,36 +40,58 @@ Liste des plaintes
             <h5 class="card-title">
                 Liste des plaintes
             </h5>
-            <table class="table table-hover datatable">
+            <table class="table datatable">
                 <thead>
                     <tr>
                         <th>Numéro plainte</th>
-                        <th>Date plainte</th>
                         <th>Objet plainte</th>
-                        <th>Description plainte</th>
-                        <th>Date reception</th>
-                        <th>Mode d'émission</th>
-                        <th>Numéro plaignant</th>
+                        <!-- <th>Description plainte</th> -->
+                        <th>Date plainte</th>
+                        <!-- <th>Mode d'émission</th> -->
+                        <!-- <th>Numéro plaignant</th> -->
                         <th>Nom plaignant</th>
-                        <th>Adresse plaignant</th>
-                        <th>Email plaignant</th>
-                        <th>Tel plaignant</th>
+                        <!-- <th>Adresse plaignant</th> -->
+                        <!-- <th>Email plaignant</th> -->
+                        <!-- <th>Tel plaignant</th> -->
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($result as $row) : ?>
                         <tr>
-                            <td><?php echo $row['numPlainte'] ?></td>
-                            <td><?php echo $row['datePlainte'] ?></td>
+                            <td>
+                                <?php
+                                    switch(strlen($row['numPlainte'])){
+                                        case 1:
+                                            echo 'PL00'.$row['numPlainte'];
+                                            break;
+                                        case 2:
+                                            echo 'PL0'.$row['numPlainte'];
+                                            break;
+                                        case 3:
+                                            echo 'PL'.$row['numPlainte'];
+                                            break;
+                                    }
+                                ?>
+                            </td>
                             <td><?php echo $row['objetPlainte'] ?></td>
-                            <td><?php echo $row['descriptionPlainte'] ?></td>
-                            <td><?php echo $row['dateReception'] ?></td>
-                            <td><?php echo $row['modeEmission'] ?></td>
-                            <td><?php echo $row['numPlaignant'] ?></td>
-                            <td><?php echo $row['nomPlaignant'] ?></td>
-                            <td><?php echo $row['adressePlaignant'] ?></td>
-                            <td><?php echo $row['emailPlaignant'] ?></td>
-                            <td><?php echo $row['telPlaignant'] ?></td>
+                            <!-- <td><?php echo $row['descriptionPlainte'] ?></td> -->
+                            <td><?php echo $row['datePlainte'] ?></td>
+                            <!-- <td><?php echo $row['modeEmission'] ?></td> -->
+                            <!-- <td><?php echo $row['numPlaignant'] ?></td> -->
+                            <td>
+                                <?php 
+                                if ($row['nomPlaignant'] == null) {
+                                    echo 'Anonyme';
+                                }else {
+                                    echo $row['nomPlaignant'];
+                                }
+                                ?>
+                            </td>
+                            <!-- <td><?php echo $row['adressePlaignant'] ?></td> -->
+                            <!-- <td><?php echo $row['emailPlaignant'] ?></td> -->
+                            <!-- <td><?php echo $row['telPlaignant'] ?></td> -->
+                            <td><a href="show_plainte.php?numPlainte=<?php echo $row['numPlainte']; ?>"><i class="bi-eye-fill"></i></a></td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>

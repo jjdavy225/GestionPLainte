@@ -68,7 +68,7 @@ Nouvelle plainte
 
                 <div class="col-md-6">
                     <div class="form-floating">
-                        <input type="date" name="datePlainte" class="form-control" id="datePlainte" placeholder="Date de la plainte">
+                        <input type="date" readonly value="<?php echo date('Y-m-j') ?>" name="datePlainte" class="form-control" id="datePlainte" placeholder="Date de la plainte">
                         <label for="datePlainte">Date de la plainte</label>
                     </div>
                 </div>

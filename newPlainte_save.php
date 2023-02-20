@@ -34,12 +34,11 @@ foreach ($result as $row) {
 }
 
 
-$datePlainte = $_POST['datePlainte'];
-$objetPlainte = $_POST['objetPlainte'];
-$descriptionPlainte = $_POST['descriptionPlainte'];
-$dateReception = date('Y-m-j');
-$modeEmission = $_POST['modeEmission'];
-$sqlC = "INSERT INTO Plainte(datePlainte, objetPlainte, descriptionPlainte, dateReception, modeEmission, numPlaignant) VALUES ('$datePlainte', '$objetPlainte', '$descriptionPlainte', '$dateReception', '$modeEmission', $numPlaignant)";
+$datePlainte = date('Y-m-j');
+$objetPlainte = htmlspecialchars($_POST['objetPlainte']);
+$descriptionPlainte = htmlspecialchars($_POST['descriptionPlainte']);
+$modeEmission = htmlspecialchars($_POST['modeEmission']);
+$sqlC = "INSERT INTO Plainte(datePlainte, objetPlainte, descriptionPlainte, modeEmission, numPlaignant) VALUES ('$datePlainte', '$objetPlainte', '$descriptionPlainte', '$modeEmission', $numPlaignant)";
 $conn->query($sqlC);
 
 $conn->close();
