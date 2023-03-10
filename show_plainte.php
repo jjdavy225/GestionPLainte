@@ -14,6 +14,7 @@ if ($conn->connect_error) {
 $numPlainte = $_GET['numPlainte'];
 $sqlB = "SELECT * FROM Plaignant,Plainte WHERE Plaignant.numPlaignant = Plainte.numPlaignant AND Plainte.numPlainte = $numPlainte";
 $result = $conn->query($sqlB);
+$conn->close();
 ?>
 
 <?php include 'master.php' ?>

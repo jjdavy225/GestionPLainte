@@ -13,6 +13,7 @@ if ($conn->connect_error) {
 
 $sqlB = "SELECT * FROM Plaignant,Plainte WHERE Plaignant.numPlaignant = Plainte.numPlaignant";
 $result = $conn->query($sqlB);
+$conn->close();
 ?>
 
 <?php include 'master.php' ?>

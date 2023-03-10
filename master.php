@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <?php require_once 'ti.php' ?>
 
 <!DOCTYPE html>
@@ -105,7 +109,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="index.php">
                     <i class="bi bi-grid"></i>
-                    <span>Dashboard</span>
+                    <span>Acceuil</span>
                 </a>
             </li><!-- End Dashboard Nav -->
 
@@ -126,7 +130,7 @@
                     </li>
                 </ul>
             </li>
-            
+            <?php if(isset($_SESSION['accountType'])): ?>
             <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#services-nav" data-bs-toggle="collapse">
                     <i class="bi bi-house-gear"></i><span>Services</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -180,6 +184,7 @@
                     </li>
                 </ul>
             </li>
+            <?php endif ?>
             
             
             <!-- End Components Nav -->
