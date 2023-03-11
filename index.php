@@ -18,17 +18,19 @@ Acceuil
 <section class="section dashboard">
     <div class="card sm">
         <div class="card-body">
-            <h1 class="card-title text-center">Avez vous un compte ?</h1>
-            <div>
-                <span>Oui</span>
-                <a href="login.php">Connectez-vous !</a>
-            </div>
-            <div>
-                <span>Non, je suis un nouvel utilisateur.</span>
-                <a href="new_plainte.php">Enregistrer une plainte !</a>
-            </div>
-
-
+            <?php if (isset($_SESSION['userId'])) : ?>
+                <h1 class="card-title text-danger">Dashboard en construction !!</h1>
+            <?php else : ?>
+                <h1 class="card-title text-center">Avez vous un compte ?</h1>
+                <div>
+                    <span>Oui</span>
+                    <a href="login.php">Connectez-vous !</a>
+                </div>
+                <div>
+                    <span>Non, je suis un nouvel utilisateur.</span>
+                    <a href="new_plainte.php">Enregistrer une plainte !</a>
+                </div>
+            <?php endif ?>
         </div>
     </div>
 </section>

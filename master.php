@@ -70,7 +70,7 @@ session_start();
                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                             <li class="dropdown-header">
                                 <h6><?php echo $_SESSION['userName'] ?></h6>
-                                <span><?php echo $_SESSION['accountType']."(e)" ?></span>
+                                <span><?php echo $_SESSION['accountType'] . "(e)" ?></span>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -95,7 +95,9 @@ session_start();
 
                         </ul>
                     <?php else : ?>
-                        <a href="login.php">Connectez-vous !</a>
+                        <a class="fw-bold fst-italic border-start border-primary p-1" style="font-size: 14px;" href="login.php">
+                            Connectez-vous !
+                        </a>
                     <?php endif ?>
 
 
