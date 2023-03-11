@@ -61,39 +61,44 @@ session_start();
         <nav class="header-nav ms-auto">
             <ul class="d-flex align-items-center">
                 <li class="nav-item dropdown pe-3">
+                    <?php if (isset($_SESSION['userName'])) : ?>
+                        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                            <img src="assets/img/avatar.svg" alt="Profile" class="rounded-circle">
+                            <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $_SESSION['userName'] ?></span>
+                        </a><!-- End Profile Iamge Icon -->
 
-                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                        <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
-                    </a><!-- End Profile Iamge Icon -->
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                            <li class="dropdown-header">
+                                <h6><?php echo $_SESSION['userName'] ?></h6>
+                                <span><?php echo $_SESSION['accountType']."(e)" ?></span>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
 
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-                        <li class="dropdown-header">
-                            <h6>Kevin Anderson</h6>
-                            <span>Web Designer</span>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+                            <!-- <li>
+                                <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                                    <i class="bi bi-gear"></i>
+                                    <span>Account Settings</span>
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li> -->
 
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                                <i class="bi bi-gear"></i>
-                                <span>Account Settings</span>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+                            <li>
+                                <form class="dropdown-item d-flex align-items-center" action="logout.php" method="post">
+                                    <i class="bi bi-box-arrow-right"></i>
+                                    <button class="dropdown-item d-flex align-items-center" type="submit"><span>Sign Out</span></button>
+                                </form>
+                            </li>
 
-                        <li>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <i class="bi bi-box-arrow-right"></i>
-                                <span>Sign Out</span>
-                            </a>
-                        </li>
+                        </ul>
+                    <?php else : ?>
+                        <a href="login.php">Connectez-vous !</a>
+                    <?php endif ?>
 
-                    </ul><!-- End Profile Dropdown Items -->
+
                 </li><!-- End Profile Nav -->
 
             </ul>
@@ -130,63 +135,63 @@ session_start();
                     </li>
                 </ul>
             </li>
-            <?php if(isset($_SESSION['accountType'])): ?>
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#services-nav" data-bs-toggle="collapse">
-                    <i class="bi bi-house-gear"></i><span>Services</span><i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="services-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="new_service.php">
-                            <i class="bi bi-plus"></i><span>Nouveau service</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="liste_service.php">
-                            <i class="bi bi-plus"></i><span>Liste des services</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+            <?php if (isset($_SESSION['accountType'])) : ?>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#services-nav" data-bs-toggle="collapse">
+                        <i class="bi bi-house-gear"></i><span>Services</span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="services-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li>
+                            <a href="new_service.php">
+                                <i class="bi bi-plus"></i><span>Nouveau service</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="liste_service.php">
+                                <i class="bi bi-plus"></i><span>Liste des services</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#transmissions-nav" data-bs-toggle="collapse">
-                    <i class="bi bi-share"></i><span>Transmissions</span><i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="transmissions-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="new_transmission.php">
-                            <i class="bi bi-plus"></i><span>Nouvelle transmission</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="liste_transmission.php">
-                            <i class="bi bi-plus"></i><span>Liste des transmissions</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#transmissions-nav" data-bs-toggle="collapse">
+                        <i class="bi bi-share"></i><span>Transmissions</span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="transmissions-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li>
+                            <a href="new_transmission.php">
+                                <i class="bi bi-plus"></i><span>Nouvelle transmission</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="liste_transmission.php">
+                                <i class="bi bi-plus"></i><span>Liste des transmissions</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#reponses-nav" data-bs-toggle="collapse" >
-                    <i class="bi bi-check2-square"></i><span>Réponses</span><i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="reponses-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="new_reponse.php">
-                            <i class="bi bi-plus"></i><span>Nouvelle réponse</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="liste_reponse.php">
-                            <i class="bi bi-plus"></i><span>Liste des réponses</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#reponses-nav" data-bs-toggle="collapse">
+                        <i class="bi bi-check2-square"></i><span>Réponses</span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="reponses-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li>
+                            <a href="new_reponse.php">
+                                <i class="bi bi-plus"></i><span>Nouvelle réponse</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="liste_reponse.php">
+                                <i class="bi bi-plus"></i><span>Liste des réponses</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             <?php endif ?>
-            
-            
+
+
             <!-- End Components Nav -->
         </ul>
 
