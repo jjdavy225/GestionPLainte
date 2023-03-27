@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 ?>
 
 <?php require_once 'ti.php' ?>
@@ -130,71 +132,53 @@ session_start();
                             <i class="bi bi-plus"></i><span>Nouvelle plainte</span>
                         </a>
                     </li>
+                    <?php if (isset($_SESSION['accountType']) and ($_SESSION['accountType'] == "admin" or $_SESSION['accountType'] == "plaignant")) : ?>
+                        <li>
+                            <a href="liste_plainte.php">
+                                <i class="bi bi-plus"></i><span>Liste des plaintes</span>
+                            </a>
+                        </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#services-nav" data-bs-toggle="collapse">
+                    <i class="bi bi-house-gear"></i><span>Services</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="services-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="liste_plainte.php">
-                            <i class="bi bi-plus"></i><span>Liste des plaintes</span>
+                        <a href="new_service.php">
+                            <i class="bi bi-plus"></i><span>Nouveau service</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="liste_service.php">
+                            <i class="bi bi-plus"></i><span>Liste des services</span>
                         </a>
                     </li>
                 </ul>
             </li>
-            <?php if (isset($_SESSION['accountType'])) : ?>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" data-bs-target="#services-nav" data-bs-toggle="collapse">
-                        <i class="bi bi-house-gear"></i><span>Services</span><i class="bi bi-chevron-down ms-auto"></i>
-                    </a>
-                    <ul id="services-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                        <li>
-                            <a href="new_service.php">
-                                <i class="bi bi-plus"></i><span>Nouveau service</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="liste_service.php">
-                                <i class="bi bi-plus"></i><span>Liste des services</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
 
-                <li class="nav-item">
-                    <a class="nav-link collapsed" data-bs-target="#transmissions-nav" data-bs-toggle="collapse">
-                        <i class="bi bi-share"></i><span>Transmissions</span><i class="bi bi-chevron-down ms-auto"></i>
-                    </a>
-                    <ul id="transmissions-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                        <li>
-                            <a href="new_transmission.php">
-                                <i class="bi bi-plus"></i><span>Nouvelle transmission</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="liste_transmission.php">
-                                <i class="bi bi-plus"></i><span>Liste des transmissions</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link collapsed" data-bs-target="#reponses-nav" data-bs-toggle="collapse">
-                        <i class="bi bi-check2-square"></i><span>Réponses</span><i class="bi bi-chevron-down ms-auto"></i>
-                    </a>
-                    <ul id="reponses-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                        <li>
-                            <a href="new_reponse.php">
-                                <i class="bi bi-plus"></i><span>Nouvelle réponse</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="liste_reponse.php">
-                                <i class="bi bi-plus"></i><span>Liste des réponses</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-            <?php endif ?>
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#transmissions-nav" data-bs-toggle="collapse">
+                    <i class="bi bi-share"></i><span>Transmissions</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="transmissions-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="new_transmission.php">
+                            <i class="bi bi-plus"></i><span>Nouvelle transmission</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="liste_transmission.php">
+                            <i class="bi bi-plus"></i><span>Liste des transmissions</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        <?php endif ?>
 
 
-            <!-- End Components Nav -->
+        <!-- End Components Nav -->
         </ul>
 
     </aside><!-- End Sidebar-->

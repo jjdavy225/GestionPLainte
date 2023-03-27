@@ -1,4 +1,11 @@
 <?php
+session_start();
+if (!isset($_SESSION['accountType'])) {
+    http_response_code(403);
+    header("Location: 403.html");
+    die();
+}
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -11,8 +18,15 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sqlB = "SELECT * FROM Plaignant,Plainte WHERE Plaignant.numPlaignant = Plainte.numPlaignant";
-$result = $conn->query($sqlB);
+$key = file_get_contents('./security/encryption.key');
+$iv = file_get_contents('./security/encryptionIv.key');
+if (isset($_SESSION['userId']) and $_SESSION['accountType'] == "plaignant") {
+    $numPlaignant = $_SESSION['numPlaignant'];
+    $sqlB = "SELECT * FROM Plaignant,Plainte WHERE Plaignant.numPlaignant = '$numPlaignant' AND Plaignant.numPlaignant = Plainte.numPlaignant";
+    $result = $conn->query($sqlB);
+} elseif (isset($_SESSION['userId']) and $_SESSION['accountType'] == "admin") {
+    "SELECT * FROM Plaignant,Plainte WHERE Plaignant.numPlaignant = Plainte.numPlaignant";
+}
 $conn->close();
 ?>
 
@@ -62,37 +76,40 @@ Liste des plaintes
                         <tr>
                             <td>
                                 <?php
-                                    switch(strlen($row['numPlainte'])){
-                                        case 1:
-                                            echo 'PL00'.$row['numPlainte'];
-                                            break;
-                                        case 2:
-                                            echo 'PL0'.$row['numPlainte'];
-                                            break;
-                                        case 3:
-                                            echo 'PL'.$row['numPlainte'];
-                                            break;
-                                    }
-                                ?>
-                            </td>
-                            <td><?php echo $row['objetPlainte'] ?></td>
-                            <!-- <td><?php echo $row['descriptionPlainte'] ?></td> -->
-                            <td><?php echo $row['datePlainte'] ?></td>
-                            <!-- <td><?php echo $row['modeEmission'] ?></td> -->
-                            <!-- <td><?php echo $row['numPlaignant'] ?></td> -->
-                            <td>
-                                <?php 
-                                if ($row['nomPlaignant'] == null) {
-                                    echo 'Anonyme';
-                                }else {
-                                    echo $row['nomPlaignant'];
+                                switch (strlen($row['numPlainte'])) {
+                                    case 1:
+                                        echo 'PL00' . $row['numPlainte'];
+                                        break;
+                                    case 2:
+                                        echo 'PL0' . $row['numPlainte'];
+                                        break;
+                                    case 3:
+                                        echo 'PL' . $row['numPlainte'];
+                                        break;
                                 }
                                 ?>
                             </td>
-                            <!-- <td><?php echo $row['adressePlaignant'] ?></td> -->
-                            <!-- <td><?php echo $row['emailPlaignant'] ?></td> -->
-                            <!-- <td><?php echo $row['telPlaignant'] ?></td> -->
-                            <td><a href="show_plainte.php?numPlainte=<?php echo $row['numPlainte']; ?>"><i class="bi-eye-fill"></i></a></td>
+                            <td><?php echo openssl_decrypt(base64_decode($row['objetPlainte']), 'AES-256-CBC', $key, OPENSSL_RAW_DATA, $iv) ?></td>
+                            <!-- <td><?php echo openssl_decrypt(base64_decode($row['descriptionPlainte']), 'AES-256-CBC', $key, OPENSSL_RAW_DATA, $iv) ?></td> -->
+                            <td><?php echo $row['datePlainte'] ?></td>
+                            <!-- <td><?php echo openssl_decrypt(base64_decode($row['modeEmission']), 'AES-256-CBC', $key, OPENSSL_RAW_DATA, $iv) ?></td> -->
+                            <!-- <td><?php echo $row['numPlaignant'] ?></td> -->
+                            <td>
+                                <?php
+                                if ($row['nomPlaignant'] == null) {
+                                    echo 'Anonyme';
+                                } else {
+                                    echo openssl_decrypt(base64_decode($row['nomPlaignant']), 'AES-256-CBC', $key, OPENSSL_RAW_DATA, $iv);
+                                }
+                                ?>
+                            </td>
+                            <!-- <td><?php echo openssl_decrypt(base64_decode($row['adressePlaignant']), 'AES-256-CBC', $key, OPENSSL_RAW_DATA, $iv) ?></td> -->
+                            <!-- <td><?php echo openssl_decrypt(base64_decode($row['emailPlaignant']), 'AES-256-CBC', $key, OPENSSL_RAW_DATA, $iv) ?></td> -->
+                            <!-- <td><?php echo openssl_decrypt(base64_decode($row['telPlaignant']), 'AES-256-CBC', $key, OPENSSL_RAW_DATA, $iv) ?></td> -->
+                            <td>
+                                <a style="font-size: 20px; margin: 0px 5px;" href="show_plainte.php?numPlainte=<?php echo $row['numPlainte']; ?>"><i class="bi-eye-fill"></i></a>
+                                <a style="font-size: 20px; margin: 0px 5px;" href="download_plainte.php?numPlainte=<?php echo $row['numPlainte']; ?>"><i class="bi bi-file-earmark-arrow-down"></i></a>
+                            </td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>

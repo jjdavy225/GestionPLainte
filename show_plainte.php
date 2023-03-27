@@ -1,4 +1,10 @@
 <?php
+session_start();
+if (!isset($_SESSION['accountType'])) {
+    http_response_code(403);
+    die('Forbidden');
+}
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -10,6 +16,9 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+
+$key = file_get_contents('./security/encryption.key');
+$iv = file_get_contents('./security/encryptionIv.key');
 
 $numPlainte = $_GET['numPlainte'];
 $sqlB = "SELECT * FROM Plaignant,Plainte WHERE Plaignant.numPlaignant = Plainte.numPlaignant AND Plainte.numPlainte = $numPlainte";
@@ -70,19 +79,31 @@ Infos plainte
                         </tr>
                         <tr>
                             <th>Objet</th>
-                            <td><?php echo $row['objetPlainte'] ?></td>
+                            <td><?php echo openssl_decrypt(base64_decode($row['objetPlainte']), 'AES-256-CBC', $key, OPENSSL_RAW_DATA, $iv) ?></td>
                         </tr>
                         <tr>
                             <th>Description</th>
-                            <td><?php echo $row['descriptionPlainte'] ?></td>
+                            <td><?php echo openssl_decrypt(base64_decode($row['descriptionPlainte']), 'AES-256-CBC', $key, OPENSSL_RAW_DATA, $iv) ?></td>
                         </tr>
                         <tr>
                             <th>Mode d'émission</th>
-                            <td><?php echo $row['modeEmission'] ?></td>
+                            <td><?php echo openssl_decrypt(base64_decode($row['modeEmission']), 'AES-256-CBC', $key, OPENSSL_RAW_DATA, $iv) ?></td>
                         </tr>
                         <tr>
                             <th>Description</th>
-                            <td><?php echo $row['descriptionPlainte'] ?></td>
+                            <td><?php echo openssl_decrypt(base64_decode($row['descriptionPlainte']), 'AES-256-CBC', $key, OPENSSL_RAW_DATA, $iv) ?></td>
+                        </tr>
+                        <tr>
+                            <th>Pièces jointes</th>
+                            <td>
+                                <?php
+                                if ($row['pieceJointe'] != null) {
+                                    echo "<a target='_blank' href=" . openssl_decrypt(base64_decode($row['pieceJointe']), 'AES-256-CBC', $key, OPENSSL_RAW_DATA, $iv) . ">Consulter ici !</a>";
+                                } else {
+                                    echo "Aucune";
+                                }
+                                ?>
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -111,19 +132,35 @@ Infos plainte
                         </tr>
                         <tr>
                             <th>Nom</th>
-                            <td><?php if(!$row['anonyme']){echo $row['nomPlaignant'];}else{echo 'Anonyme';}  ?></td>
+                            <td><?php if (!$row['anonyme']) {
+                                    echo openssl_decrypt(base64_decode($row['nomPlaignant']), 'AES-256-CBC', $key, OPENSSL_RAW_DATA, $iv);
+                                } else {
+                                    echo 'Anonyme';
+                                }  ?></td>
                         </tr>
                         <tr>
                             <th>Adresse</th>
-                            <td><?php if(!$row['anonyme']){echo $row['adressePlaignant'];}else{echo 'Anonyme';} ?></td>
+                            <td><?php if (!$row['anonyme']) {
+                                    echo openssl_decrypt(base64_decode($row['adressePlaignant']), 'AES-256-CBC', $key, OPENSSL_RAW_DATA, $iv);
+                                } else {
+                                    echo 'Anonyme';
+                                } ?></td>
                         </tr>
                         <tr>
                             <th>Email</th>
-                            <td><?php if(!$row['anonyme']){echo $row['emailPlaignant'];}else{echo 'Anonyme';} ?></td>
+                            <td><?php if (!$row['anonyme']) {
+                                    echo openssl_decrypt(base64_decode($row['emailPlaignant']), 'AES-256-CBC', $key, OPENSSL_RAW_DATA, $iv);
+                                } else {
+                                    echo 'Anonyme';
+                                } ?></td>
                         </tr>
                         <tr>
                             <th>Téléphone</th>
-                            <td><?php if(!$row['anonyme']){echo $row['telPlaignant'];}else{echo 'Anonyme';} ?></td>
+                            <td><?php if (!$row['anonyme']) {
+                                    echo openssl_decrypt(base64_decode($row['telPlaignant']), 'AES-256-CBC', $key, OPENSSL_RAW_DATA, $iv);
+                                } else {
+                                    echo 'Anonyme';
+                                } ?></td>
                         </tr>
                     </table>
                 </div>

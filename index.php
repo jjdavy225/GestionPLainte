@@ -22,14 +22,29 @@ Acceuil
                 <h1 class="card-title text-danger">Dashboard en construction !!</h1>
             <?php else : ?>
                 <h1 class="card-title text-center">Avez vous un compte ?</h1>
-                <div>
-                    <span>Oui</span>
-                    <a href="login.php">Connectez-vous !</a>
+                <div class="row">
+                    <span class="custT text-center text-bold fst-italic">Oui</span>
+                    <a class="cust mx-auto p-3 rounded-pill col-lg-4 fw-bold text-center mt-3 bg-primary text-white" href="login.php">Connectez-vous !</a>
                 </div>
-                <div>
-                    <span>Non, je suis un nouvel utilisateur.</span>
-                    <a href="new_plainte.php">Enregistrer une plainte !</a>
+                <div class="row mt-3 mb-4">
+                    <span class="custT text-center text-bold fst-italic">Non, je suis un nouvel utilisateur.</span>
+                    <a class="cust mx-auto p-3 rounded-pill col-lg-4 fw-bold text-center mt-3 bg-primary text-white" href="new_plainte.php">Enregistrer une plainte !</a>
                 </div>
+                <style>
+                    .cust{
+                        transition: all ease-in-out .3s;
+                        background-color: #4c44d5 !important;
+                    }
+
+                    .custT{
+                        color: #012970 !important;
+                        /* font-weight: bolder; */
+                    }
+
+                    .cust:hover{
+                        background-color: #1c194c !important;
+                    }
+                </style>
             <?php endif ?>
         </div>
     </div>
